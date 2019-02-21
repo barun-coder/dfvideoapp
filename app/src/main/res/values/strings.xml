@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Display Video</string>
+    <string name="sample_device_admin">sample_device_admin</string>
+    <string name="sample_device_admin_description">sample_device_admin_description</string>
+    <string name="w_main_storage_permission">AnotherMonitor cannot record values if you don\'t grant Storage permission.
+        Restart the app to show the permission prompt again.</string>
+    <string name="notify_toast_saved">saved in the folder</string>
+    <string name="notify_toast_error">An error happened when saving the CSV file:</string>
+    <string name="notify_toast_error_2">It hasn\'t been possible to start recording:</string>
+    <string name="w_processes_dead_notification">Process dead</string>
+    <!---->
+    <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
+        weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
+        InstanceID token to logcat.</string>
+    <string name="subscribe_to_weather">Subscribe To Weather</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_subscribed">Subscribed to weather topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="Connected">Connected</string>
+
+    <!--ExoPlayer-->
+    <string name="unexpected_intent_action">Unexpected intent action:</string>
+
+    <string name="error_cleartext_not_permitted">Cleartext traffic not permitted</string>
+
+    <string name="error_generic">Playback failed</string>
+
+    <string name="error_unrecognized_abr_algorithm">Unrecognized ABR algorithm</string>
+
+    <string name="error_unrecognized_stereo_mode">Unrecognized stereo mode</string>
+
+    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
+
+    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
+
+    <string name="error_drm_unknown">An unknown DRM error occurred</string>
+
+    <string name="error_no_decoder">This device does not provide a decoder for </string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for</string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder </string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+
+    <string name="sample_list_load_error">One or more sample lists failed to load</string>
+
+    <string name="ima_not_loaded">Playing sample without ads, as the IMA extension was not loaded</string>
+
+    <string name="download_start_error">Failed to start download</string>
+
+    <string name="download_playlist_unsupported">This demo app does not support downloading playlists</string>
+
+    <string name="download_drm_unsupported">This demo app does not support downloading protected content</string>
+
+    <string name="download_scheme_unsupported">This demo app only supports downloading http streams</string>
+
+    <string name="download_ads_unsupported">IMA does not support offline ads</string>
+
+    <string name="prefer_extension_decoders">Prefer extension decoders</string>
+
+    <string name="random_abr">Enable random ABR</string>
+</resources>
