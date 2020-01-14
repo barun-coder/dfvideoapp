@@ -1,9 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="consulting.dfort.dffortvideoapp">
 
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
@@ -32,21 +29,32 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".PlaybackActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="landscape">
+            android:screenOrientation="portrait">
             <intent-filter>
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".TexturePlaybackActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ExoplayerActivity"
             android:configChanges="orientation|screenSize"
@@ -55,7 +63,6 @@
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
 

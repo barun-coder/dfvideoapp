@@ -3,9 +3,6 @@ package consulting.dfort.dffortvideoapp;
 import android.content.pm.ActivityInfo;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -25,9 +22,7 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import consulting.dfort.dffortvideoapp.widget.MyVideoView;
 
@@ -36,15 +31,22 @@ import consulting.dfort.dffortvideoapp.widget.MyVideoView;
  * MyApplication
  */
 public class PlaybackActivity extends AppCompatActivity implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, TextureView.SurfaceTextureListener {
+
     private SurfaceView mSurfaceView;
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder mSurfaceHolder;
     private static final String VIDEO_PATH = "https://inducesmile.com/wp-content/uploads/2016/05/small.mp4";
-    private MyVideoView videoView;
+    private MyVideoView myVideoView;
     int stopPosition = 0;
     private static MediaController mediaController;
     String demoVideoFolder = null;
     String demoVideoPath = null;
+    /**/
+    private MediaPlayer mediaPlayer;
+    private TextureView videoView;
+    private boolean startedPlayback = false;
+    private boolean playerReady = false;
+    public static final int MEDIA_INFO_NETWORK_BANDWIDTH = 703;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,27 @@ public class PlaybackActivity extends AppCompatActivity implements SurfaceHolder
         init();
         setDefaultVideoPath();
 
-        setVideoView(savedInstanceState);
+        setMyVideoView(savedInstanceState);
         setMediaController();
+//        setTextureViewPlayer();
     }
+
+    private void setTextureViewPlayer() {
+        videoView = (TextureView) findViewById(R.id.texture_view);
+        videoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        videoView.setSurfaceTextureListener(this);
+        createMediaPlayer();
+    }
+
+    private void createMediaPlayer() {
+        mediaPlayer = new MediaPlayer();
+    }
+
 
     private void setDefaultVideoPath() {
         demoVideoFolder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Videokit/";
@@ -119,35 +139,35 @@ public class PlaybackActivity extends AppCompatActivity implements SurfaceHolder
         });
     }
 
-    private void setVideoView(Bundle savedInstanceState) {
-        videoView = findViewById(R.id.videoView1);
+    private void setMyVideoView(Bundle savedInstanceState) {
+        myVideoView = findViewById(R.id.videoView1);
         if (savedInstanceState != null) {
             stopPosition = savedInstanceState.getInt("position");
             Log.d("", "savedInstanceState called" + stopPosition);
         }
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-
-        videoView.setVideoSize(height, width);
+//
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        int height = displayMetrics.heightPixels;
+//        int width = displayMetrics.widthPixels;
+//
+//        myVideoView.setVideoSize(height, width);
         mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mediaController.setAnchorView(myVideoView);
+        myVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
             }
         });
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.footboys;
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.fmov;
 //        SetOrient(path);
         Uri uri = Uri.parse(path);
         ShowToast(path);
-        videoView.setMediaController(mediaController);
-        videoView.setVideoURI(uri);
-        videoView.requestFocus();
-        videoView.start();
+        myVideoView.setMediaController(mediaController);
+        myVideoView.setVideoPath(path);
+        myVideoView.requestFocus();
+        myVideoView.start();
     }
 
 
@@ -199,14 +219,14 @@ public class PlaybackActivity extends AppCompatActivity implements SurfaceHolder
     protected void onPause() {
         super.onPause();
         releaseMediaPlayer();
-        videoView.pause();
+        myVideoView.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        videoView.seekTo(stopPosition);
-        videoView.resume();
+        myVideoView.seekTo(stopPosition);
+        myVideoView.resume();
     }
 
     @Override
@@ -229,7 +249,7 @@ public class PlaybackActivity extends AppCompatActivity implements SurfaceHolder
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        videoView.pause();
+        myVideoView.pause();
         outState.putInt("position", 100);
     }
 
